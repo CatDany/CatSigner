@@ -1,0 +1,47 @@
+package dany.catsigner;
+
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
+public class Lang
+{
+	public static String BUTTON_GENERATE_KEYS;
+	public static String BUTTON_SIGN_FILES;
+	public static String BUTTON_VERIFY_FILES;
+	public static String BUTTON_GENERATE_GO;
+	public static String BUTTON_SIGN_GO;
+	public static String BUTTON_VERIFY_GO;
+	public static String LABEL_PRIVATE_KEY;
+	public static String LABEL_PUBLIC_KEY;
+	public static String LABEL_FILE_TO_SIGN;
+	public static String LABEL_FILE_TO_VERIFY;
+	public static String LABEL_SIGNATURE;
+	public static String INFO_PRIVATE_KEY;
+	public static String INFO_PUBLIC_KEY;
+	public static String INFO_FILE_TO_SIGN;
+	public static String INFO_FILE_TO_VERIFY;
+	public static String INFO_SIGNATURE;
+	public static String INFO_FILE_VERIFIED_YES;
+	public static String INFO_FILE_VERIFIED_NO;
+	public static String INFO_UNKNOWN_SIGNER;
+	public static String INFO_UNABLE_TO_SAVE_PRIVATE_KEY;
+	public static String INFO_SAVED_PRIVATE_KEY;
+	public static String INFO_ERROR;
+	
+	public static void init(String locale) throws Throwable
+	{
+		System.out.println("Started initializing Localization!");
+		List<String> list = Files.readAllLines(Paths.get(ClassLoader.getSystemResource("lang_" + locale + ".txt").toURI()), Charset.defaultCharset());
+		for (String i : list)
+		{
+			String key = i.split("=", 2)[0];
+			String value = i.split("=", 2)[1];
+			
+			Lang.class.getField(key).set(null, value.replace("  ", "\n"));
+			System.out.println("Localization: " + key + "=" + value);
+		}
+		System.out.println("Localization initialized!");
+	}
+}
