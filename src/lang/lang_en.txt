@@ -19,4 +19,3 @@ INFO_FILE_VERIFIED_NO=File is NOT verified!
 INFO_UNKNOWN_SIGNER=Unknown
 INFO_UNABLE_TO_SAVE_PRIVATE_KEY=Unable to save a Private Key!
 INFO_SAVED_PRIVATE_KEY=Private Key is saved!
-INFO_ERROR=Error occurred: %s.  Do you want to close CatSigner right now?

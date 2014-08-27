@@ -1,9 +1,8 @@
 package dany.catsigner;
 
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
+
+import dany.catsigner.libs.Helper;
 
 public class Lang
 {
@@ -33,7 +32,7 @@ public class Lang
 	public static void init(String locale) throws Throwable
 	{
 		System.out.println("Started initializing Localization!");
-		List<String> list = Files.readAllLines(Paths.get(ClassLoader.getSystemResource("lang_" + locale + ".txt").toURI()), Charset.defaultCharset());
+		List<String> list = Helper.readLines("lang/lang_" + locale + ".txt");
 		for (String i : list)
 		{
 			String key = i.split("=", 2)[0];

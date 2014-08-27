@@ -19,4 +19,3 @@ INFO_FILE_VERIFIED_NO=Файл не совпадает с подписью!
 INFO_UNKNOWN_SIGNER=Неизвестный
 INFO_UNABLE_TO_SAVE_PRIVATE_KEY=Невозможно сохранить секретный ключ!
 INFO_SAVED_PRIVATE_KEY=Секретный ключ сохранен!
-INFO_ERROR=Произошла ошибка: %s.  Хотите закрыть CatSigner прямо сейчас?

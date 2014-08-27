@@ -1,11 +1,17 @@
 package dany.catsigner.libs;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.xml.bind.DatatypeConverter;
@@ -90,5 +96,26 @@ public class Helper
 			System.out.println("No saved private key found");
 			return "";
 		}
+	}
+	
+	/**
+	 * 
+	 * @param jarFile Not actually ".jar" file, but a file within a jar file
+	 * @return
+	 * @throws IOException
+	 * @throws URISyntaxException
+	 */
+	public static List<String> readLines(String jarFile) throws IOException
+	{
+		ArrayList<String> list = new ArrayList<String>();
+		InputStream jarFileIn = ClassLoader.getSystemResourceAsStream(jarFile);
+		BufferedReader buf = new BufferedReader(new InputStreamReader(jarFileIn));
+		String line;
+		while ((line = buf.readLine()) != null)
+		{
+			list.add(line);
+		}
+		buf.close();
+		return list;
 	}
 }

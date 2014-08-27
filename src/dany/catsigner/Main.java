@@ -21,7 +21,7 @@ import dany.catsigner.listeners.EventListener;
 public class Main implements ActionListener
 {
 	// FIXME Version!
-	public static final String VERSION = "Beta 1.0 Build 2 (%s)";
+	public static final String VERSION = "Beta 1.0 Build 3 (%s)";
 	
 	public static final Main instance = new Main();
 	
@@ -48,7 +48,7 @@ public class Main implements ActionListener
 		}
 		catch (Throwable t)
 		{
-			int yesorno = JOptionPane.showConfirmDialog(new JFrame(), String.format(Lang.INFO_ERROR, t.toString()), "", JOptionPane.ERROR_MESSAGE);
+			int yesorno = JOptionPane.showConfirmDialog(new JFrame(), "ERROR.\n" + t.toString() + "\nDo you want to close this program now?", "", JOptionPane.ERROR_MESSAGE);
 			t.printStackTrace();
 			if (yesorno == JOptionPane.YES_OPTION)
 			{
