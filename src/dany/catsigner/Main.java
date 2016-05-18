@@ -21,7 +21,7 @@ import dany.catsigner.listeners.EventListener;
 public class Main implements ActionListener
 {
 	// FIXME Version!
-	public static final String VERSION = "Beta 1.0 Build 3 (%s)";
+	public static final String VERSION = "Beta 1.0 Build 4 (%s)";
 	
 	public static final Main instance = new Main();
 	

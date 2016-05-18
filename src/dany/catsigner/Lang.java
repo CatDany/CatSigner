@@ -9,13 +9,15 @@ public class Lang
 	public static String BUTTON_GENERATE_KEYS;
 	public static String BUTTON_SIGN_FILES;
 	public static String BUTTON_VERIFY_FILES;
-	public static String BUTTON_GENERATE_GO;
+	public static String BUTTON_BIND_KEY_GO;
+	public static String BUTTON_GENERATE_GO;	
 	public static String BUTTON_SIGN_GO;
 	public static String BUTTON_VERIFY_GO;
 	public static String LABEL_PRIVATE_KEY;
 	public static String LABEL_PUBLIC_KEY;
 	public static String LABEL_FILE_TO_SIGN;
 	public static String LABEL_FILE_TO_VERIFY;
+	public static String LABEL_SAVE_TO;
 	public static String LABEL_SIGNATURE;
 	public static String INFO_PRIVATE_KEY;
 	public static String INFO_PUBLIC_KEY;
@@ -28,6 +30,16 @@ public class Lang
 	public static String INFO_UNABLE_TO_SAVE_PRIVATE_KEY;
 	public static String INFO_SAVED_PRIVATE_KEY;
 	public static String INFO_ERROR;
+	public static String INFO_SAVE_TO;
+	public static String INFO_PUBLIC_KEY_INVALID;
+	public static String INFO_BIND_KEY_YES_NO;
+	public static String INFO_BIND_KEY_ENTER_PUBLIC_KEY;
+	public static String INFO_BIND_KEY_ENTER_YOUR_NAME;
+	public static String INFO_BIND_KEY_SUCCESS;
+	public static String INFO_BIND_KEY_WRONG_OWNER;
+	public static String INFO_BIND_KEY_WRONG_PUBLIC_KEY;
+	public static String INFO_BIND_KEY_KEY_ALREADY_EXISTS;
+	public static String INFO_BIND_KEY_UNKNOWN_ERROR;
 	
 	public static void init(String locale) throws Throwable
 	{

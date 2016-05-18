@@ -9,40 +9,88 @@ import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.security.KeyFactory;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 import javax.xml.bind.DatatypeConverter;
 
+import dany.catsigner.Lang;
+
 public class Helper
 {
-	/**
-	 * Return a map (pubkey, signer) with all known signers and their public keys
-	 * @param url
-	 * @return
-	 */
-	public static HashMap<String, String> getBoundKeys(String url)
+	public static String getDatabaseResponse(String owner, String pubKey)
 	{
-		HashMap<String, String> map = new HashMap<String, String>();
+		// php script was written by a person who doesn't know English very well
+		// kay = key, huh
+		String response = "";
+		String url = "http://cs.hoppix.ru/add.php?user=%s&go=YepItsTotallyFine&kay=%s";
 		try
 		{
-			Scanner scan = new Scanner(new URL(url).openStream());
+			Scanner scan = new Scanner(new URL(String.format(url, owner, pubKey)).openStream());
 			while (scan.hasNext())
 			{
-				String line = scan.next();
-				String pubkey = line.split("=", 2)[1];
-				String signer = line.split("=", 2)[0];
-				map.put(pubkey, signer);
+				response += scan.next() + " ";
 			}
 			scan.close();
+			System.out.println("[DEBUG] Database Response: " + response);
 		}
 		catch (Throwable t)
 		{
 			t.printStackTrace();
 		}
-		return map;
+		response = response.replace("<br/>", "");
+		return response;
+	}
+	
+	public static String getOwner(String pubKey)
+	{
+		String def = Lang.INFO_UNKNOWN_SIGNER;
+		if (!pubKey.matches("^[0-9A-F]{16,}$"))
+		{
+			return def;
+		}
+		
+		String response = getDatabaseResponse("", pubKey).substring(11);
+		return response;
+	}
+	
+	/**
+	 * 
+	 * @param owner
+	 * @param pubKey
+	 * @return
+	 * 0 - Success<br>
+	 * 1 - Wrong owner<br>
+	 * 2 - Wrong Public Key<br>
+	 * 3 - Key Already Exists<br>
+	 * -1 - Unknown error
+	 */
+	public static int addOwnerToDatabase(String owner, String pubKey)
+	{
+		if (!owner.matches("^[0-9A-Za-z]{3,}$"))
+		{
+			return 1;
+		}
+		else if (!isPublicKeyValid(pubKey))
+		{
+			return 2;
+		}
+		String response = getDatabaseResponse(owner, pubKey);
+		if (response.contains("KEY_ALREADY_EXISTS"))
+		{
+			return 3;
+		}
+		else if (response.contains("ADD_SUCCESS"))
+		{
+			return 0;
+		}
+		else
+		{
+			return -1;
+		}
 	}
 	
 	public static void createAppdataFolder()
@@ -117,5 +165,19 @@ public class Helper
 		}
 		buf.close();
 		return list;
+	}
+	
+	public static boolean isPublicKeyValid(String pubKey)
+	{
+		try
+		{
+			KeyFactory keys = KeyFactory.getInstance("DSA", "SUN");
+			keys.generatePublic(new X509EncodedKeySpec(DatatypeConverter.parseHexBinary(pubKey)));
+			return true;
+		}
+		catch (Throwable t)
+		{
+			return false;
+		}
 	}
 }

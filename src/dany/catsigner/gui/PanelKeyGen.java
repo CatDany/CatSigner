@@ -22,6 +22,7 @@ public class PanelKeyGen extends JPanel
 	public final JButton buttonGenerate;
 	public final JButton buttonHelpPrivate;
 	public final JButton buttonHelpPublic;
+	public final JButton buttonBindKey;
 	
 	public PanelKeyGen()
 	{
@@ -36,6 +37,12 @@ public class PanelKeyGen extends JPanel
 		labelTitle.setHorizontalAlignment(JLabel.CENTER);
 		labelTitle.setBounds(0, 0, wid, 40);
 		add(labelTitle);
+		
+		this.buttonBindKey = new JButton(Lang.BUTTON_BIND_KEY_GO);
+		buttonBindKey.setBounds(wid / 2 - 100, 78, 200, 24);
+		buttonBindKey.setActionCommand("buttonBindKey");
+		buttonBindKey.addActionListener(Main.instance);
+		add(buttonBindKey);
 		
 		this.labelPrivateKey = new JLabel(Lang.LABEL_PRIVATE_KEY);
 		labelPrivateKey.setFont(Main.fontDefault);

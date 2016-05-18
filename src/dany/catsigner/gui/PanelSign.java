@@ -19,14 +19,18 @@ public class PanelSign extends JPanel
 	public final JLabel labelPrivateKey;
 	public final JLabel labelFile;
 	public final JLabel labelSignature;
+	public final JLabel labelSaveTo;
 	public final JTextField fieldPrivateKey;
 	public final JTextField fieldFile;
 	public final JTextField fieldSignature;
-	public final JButton buttonFile;
+	public final JTextField fieldSaveTo;
 	public final JButton buttonHelpPrivate;
-	public final JButton buttonHelpFile;
 	public final JButton buttonSavePrivateKey;
+	public final JButton buttonHelpFile;
+	public final JButton buttonFile;
 	public final JButton buttonSign;
+	public final JButton buttonHelpSaveTo;
+	public final JButton buttonFileSaveTo;
 	
 	public PanelSign()
 	{
@@ -43,27 +47,39 @@ public class PanelSign extends JPanel
 		add(labelTitle);
 		
 		this.labelPrivateKey = new JLabel(Lang.LABEL_PRIVATE_KEY);
-		labelPrivateKey.setBounds(wid / 2 - 120, 120, 240, 20);
+		labelPrivateKey.setBounds(wid / 2 - 120, 78, 240, 20);
 		labelPrivateKey.setHorizontalAlignment(JLabel.CENTER);
 		labelPrivateKey.setFont(Main.fontDefault);
 		add(labelPrivateKey);
 		
 		this.fieldPrivateKey = new JTextField();
-		fieldPrivateKey.setBounds(wid / 2 - 120, 140, 240, 22);
+		fieldPrivateKey.setBounds(wid / 2 - 120, 98, 240, 22);
 		fieldPrivateKey.setText(Helper.getSavedPrivateKey());
 		add(fieldPrivateKey);
 		
 		this.labelFile = new JLabel(Lang.LABEL_FILE_TO_SIGN);
 		labelFile.setFont(Main.fontDefault);
 		labelFile.setHorizontalAlignment(JLabel.CENTER);
-		labelFile.setBounds(wid / 2 - 120, 162, 240, 20);
+		labelFile.setBounds(wid / 2 - 120, 120, 240, 20);
 		add(labelFile);
 		
 		this.fieldFile = new JTextField();
-		fieldFile.setBounds(wid / 2 - 120, 182, 240, 22);
+		fieldFile.setBounds(wid / 2 - 120, 142, 240, 22);
 		fieldFile.addKeyListener(ReadOnlyListener.instance);
 		fieldFile.addFocusListener(SelectOnFocusListener.instance);
 		add(fieldFile);
+		
+		this.labelSaveTo = new JLabel(Lang.LABEL_SAVE_TO);
+		labelSaveTo.setFont(Main.fontDefault);
+		labelSaveTo.setHorizontalAlignment(JLabel.CENTER);
+		labelSaveTo.setBounds(wid / 2 - 120, 162, 240, 20);
+		add(labelSaveTo);
+		
+		this.fieldSaveTo = new JTextField();
+		fieldSaveTo.setBounds(wid / 2 - 120, 184, 240, 22);
+		fieldSaveTo.addKeyListener(ReadOnlyListener.instance);
+		fieldSaveTo.addFocusListener(SelectOnFocusListener.instance);
+		add(fieldSaveTo);
 		
 		this.buttonSign = new JButton(Lang.BUTTON_SIGN_GO);
 		buttonSign.setBounds(wid / 2 - 100, 210, 200, 24);
@@ -84,27 +100,39 @@ public class PanelSign extends JPanel
 		add(fieldSignature);
 		
 		this.buttonHelpPrivate = new JButton("?");
-		buttonHelpPrivate.setBounds(wid / 2 - 120, 120, 50, 20);
+		buttonHelpPrivate.setBounds(wid / 2 - 120, 78, 50, 20);
 		buttonHelpPrivate.setActionCommand("buttonHelpPrivate");
 		buttonHelpPrivate.addActionListener(Main.instance);
 		add(buttonHelpPrivate);
 		
+		this.buttonSavePrivateKey = new JButton(Main.iconSave);
+		buttonSavePrivateKey.setBounds(wid / 2 + 70, 78, 50, 20);
+		buttonSavePrivateKey.setActionCommand("buttonSavePrivateKey");
+		buttonSavePrivateKey.addActionListener(Main.instance);
+		add(buttonSavePrivateKey);
+		
 		this.buttonHelpFile = new JButton("?");
-		buttonHelpFile.setBounds(wid / 2 - 120, 162, 50, 20);
+		buttonHelpFile.setBounds(wid / 2 - 120, 120, 50, 20);
 		buttonHelpFile.setActionCommand("buttonHelpFileToSign");
 		buttonHelpFile.addActionListener(Main.instance);
 		add(buttonHelpFile);
 		
 		this.buttonFile = new JButton("...");
-		buttonFile.setBounds(wid / 2 + 70, 162, 50, 20);
+		buttonFile.setBounds(wid / 2 + 70, 120, 50, 20);
 		buttonFile.setActionCommand("buttonFileToSign");
 		buttonFile.addActionListener(Main.instance);
 		add(buttonFile);
 		
-		this.buttonSavePrivateKey = new JButton(Main.iconSave);
-		buttonSavePrivateKey.setBounds(wid / 2 + 70, 120, 50, 20);
-		buttonSavePrivateKey.setActionCommand("buttonSavePrivateKey");
-		buttonSavePrivateKey.addActionListener(Main.instance);
-		add(buttonSavePrivateKey);
+		this.buttonHelpSaveTo = new JButton("?");
+		buttonHelpSaveTo.setBounds(wid / 2 - 120, 164, 50, 20);
+		buttonHelpSaveTo.setActionCommand("buttonHelpSaveTo");
+		buttonHelpSaveTo.addActionListener(Main.instance);
+		add(buttonHelpSaveTo);
+		
+		this.buttonFileSaveTo = new JButton("...");
+		buttonFileSaveTo.setBounds(wid / 2 + 70, 164, 50, 20);
+		buttonFileSaveTo.setActionCommand("buttonFileSaveTo");
+		buttonFileSaveTo.addActionListener(Main.instance);
+		add(buttonFileSaveTo);
 	}
 }
